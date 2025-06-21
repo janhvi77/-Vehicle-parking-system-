@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <time.h>
+
+// Function declarations
+void menu();
+void bus();
+void car();
+void riksha();
+void twowheeler();
+void deletedata();
+void showdata();
+void print_datetime();
+
+// Global variables
+int noc = 0, nob = 0, nor = 0, notw = 0, amount = 0, count = 0;
+
+int main() {
+    int choice;
+
+    while (1) {
+        menu();
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                bus();
+                break;
+            case 2:
+                car();
+                break;
+            case 3:
+                riksha();
+                break;
+            case 4:
+                twowheeler();
+                break;
+            case 5:
+                showdata();
+                break;
+            case 6:
+                deletedata();
+                break;
+            case 7:
+                printf("Exiting program.\n");
+                return 0;
+            default:
+                printf("Invalid choice.\n");
+        }
+    }
+
+    return 0;
+}
+
+void menu() {
+    printf("\n*** 🚗 Vehicle Parking Menu 🚗 ***\n");
+    printf("1. Enter Bus 🚎\n");
+    printf("2. Enter Car 🚗\n");
+    printf("3. Enter Riksha 🛺\n");
+    printf("4. Enter Two-Wheeler 🛵\n");
+    printf("5. Show Data\n");
+    printf("6. Delete Data\n");
+    printf("7. Exit 🛑\n");
+}
+
+void deletedata() {
+    nob = noc = nor = notw = amount = count = 0;
+    printf("All data cleared.\n");
+}
+
+void showdata() {
+    printf("\n--- Parking Status ---\n");
+    printf("No of Buses      = %d\n", nob);
+    printf("No of Cars       = %d\n", noc);
+    printf("No of Rikshas    = %d\n", nor);
+    printf("No of TwoWheelers = %d\n", notw);
+    printf("Total Vehicles   = %d\n", count);
+    printf("Total Amount     = ₹%d\n", amount);
+}
+
+void print_datetime() {
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    printf("Date and Time: %02d-%02d-%d %02d:%02d:%02d\n",
+           local->tm_mday,
+           local->tm_mon + 1,
+           local->tm_year + 1900,
+           local->tm_hour,
+           local->tm_min,
+           local->tm_sec);
+}
+
+void bus() {
+    printf("Entry successful 🙏🏻\n");
+    nob++;
+    amount += 100;
+    count++;
+    printf("Bus parked. Charge ₹100\n");
+    print_datetime();
+}
+
+void car() {
+    printf("Entry successful 🙏🏻\n");
+    noc++;
+    amount += 60;
+    count++;
+    printf("Car parked. Charge ₹60\n");
+    print_datetime();
+}
+
+void riksha() {
+    printf("Entry successful 🙏🏻\n");
+    nor++;
+    amount += 50;
+    count++;
+    printf("Riksha parked. Charge ₹50\n");
+    print_datetime();
+}
+
+void twowheeler() {
+    printf("Entry successful 🙏🏻\n");
+    notw++;
+    amount += 40;
+    count++;
+    printf("Two-wheeler parked. Charge ₹40\n");
+    print_datetime();
+}
